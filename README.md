@@ -1,2 +1,3 @@
 # image-ascii-converter
-web app that takes a user image and outputs ascii art 
+
+* supports image formats including JPG, PNG, GIF, and WebP 
