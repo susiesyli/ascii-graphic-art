@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASCII Art Converter</title>
+    <title>ASCII GRAPHIC ART</title>
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <h1>Image to ASCII Art Converter</h1>
+    <h1>ascii graphic art</h1>
     <div class="supported-formats">
         Supported formats: JPG, PNG, GIF, WebP, BMP
     </div>
@@ -108,8 +108,13 @@
             // Make the canvas big enough for the ASCII art
             const lines = output.textContent.split('\n');
             const fontSize = 12;
-            canvas.width = lines[0].length * fontSize * 0.6; 
-            canvas.height = lines.length * fontSize;
+
+            // Calculate canvas width based on the longest line
+            const longestLineLength = Math.max(...lines.map(line => line.length));
+            canvas.width = longestLineLength * fontSize * 0.6; 
+
+            const lineHeight = fontSize * 0.7; // Add some spacing (e.g., 1.2 times the font size)
+            canvas.height = lines.length * lineHeight;
             
             // Set up the canvas for text rendering
             ctx.fillStyle = 'white';
@@ -119,13 +124,14 @@
             
             // Draw the ASCII art
             lines.forEach((line, i) => {
+                const yPosition = i * lineHeight + fontSize;  
                 ctx.fillText(line, 0, (i + 1) * fontSize);
             });
             
             // Create download link
             const link = document.createElement('a');
-            link.download = 'ascii-art.png';
             link.href = canvas.toDataURL('image/png');
+            link.download = 'ascii-art.png';
             link.click();
         }
 
