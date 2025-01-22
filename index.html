@@ -61,6 +61,8 @@
             const pixels = imageData.data;
             
             let asciiArt = '';
+            let longestLineLength = 0;
+
 
             // Convert pixels to ASCII
             for (let i = 0; i < pixels.length; i += 4) {
@@ -76,6 +78,18 @@
             }
             
             output.textContent = asciiArt;
+
+            // Find the longest line length
+            const lines = asciiArt.split('\n');
+            lines.forEach(line => {
+                if (line.length > longestLineLength) {
+                    longestLineLength = line.length;
+                }
+            });
+
+            longestLineLength += 10;
+
+            output.style.width = `${longestLineLength * 10}px`;  
         }
 
         async function copyToClipboard() {
