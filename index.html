@@ -8,25 +8,33 @@
 </head>
 <body>
     <h1>ascii graphic art</h1>
-    <div class="supported-formats">
-        Supported formats: JPG, PNG, GIF, WebP, BMP
-    </div>
+
     <label class="btn" for="fileInput">
         Choose an Image
     </label>
+    <div class="supported-formats">
+        Supported formats: JPG, PNG, GIF, WebP, BMP
+    </div>
     <input type="file" id="fileInput" accept="image/*">
-    <img id="preview">
+    <!-- <img id="preview"> -->
     <div id="controls">
         <button class="btn" onclick="copyToClipboard()">Copy to Clipboard</button>
         <button class="btn" onclick="saveAsPNG()">Save as PNG</button>
         <button class="btn" onclick="saveAsTXT()">Save as TXT</button>
     </div>
-    <pre id="output"></pre>
+    <div id="container">
+        <img id="preview" alt="Preview" />
+        <div id="output"></div>
+    </div>
+    <!-- <pre id="output"></pre> -->
 
     <script>
         const ASCII_CHARS = '@%#*+=-:. ';
+        // const ASCII_CHARS = '$@B%8&WM#*oahkbdpqwmO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`. ';
+        // const ASCII_CHARS = '$@B%8&#*/\|()1{}[]?-_+~<>i!lI;:,"^`. ';
+
         const fileInput = document.getElementById('fileInput');
-        const preview = document.getElementById('preview');
+        const preview = document.getElementById('preview'); 
         const output = document.getElementById('output');
         const controls = document.getElementById('controls');
 
@@ -90,6 +98,8 @@
             longestLineLength += 10;
 
             output.style.width = `${longestLineLength * 10}px`;  
+            output.style.display = 'block';
+
         }
 
         async function copyToClipboard() {
